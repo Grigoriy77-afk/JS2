@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0; }
+
+html,
+body {
+    height: 100%;
+}
+
+wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 1500px;
+    margin: 0 auto;
+}
+
+top {
+    flex-grow: 1;
+}
+
+header {
+    height: 200px;
+    background-color: beige;
+}
+
+.catalog {
+    padding-bottom: 30px;
+}
+
+main {
+    background-color: antiquewhite;
+}
+
+footer {
+    height: 250px;
+    background-color: bisque;
+}
+
+.copy {
+    margin: 100px 20px;
+    font-size: 25px;
+}
+
+.cart-button {
+    font-size: 25px;
+    padding: 10px;
+    margin-left: 1200px;
+    margin-top: 60px;
+    font-style: italic;
+    background-color: #cccc;
+    border-radius: 10px 10px;
+    outline: none;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;}
+    .cart-button:hover {
+        background-color: #f16d7f;
+        transition-timing-function: ease; }
+    .cart-button:active {
+        position: relative;
+        top: 3px;
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);}
+
+.catalog-button {
+    font-size: 25px;
+    padding: 10px;
+    margin-left: 1200px;
+    margin-top: 60px;
+    font-style: italic;
+    background-color: #cccc;
+    border-radius: 10px 10px;
+    outline: none;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;}
+    .catalog-button:hover {
+        background-color: #f16d7f;
+        transition-timing-function: ease; }
+    .catalog-button:active {
+        position: relative;
+        top: 3px;
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);}
+
+.item {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+img {
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+h3 {
+    font-size: 25px;
+    display: block;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+p {
+    display: block;
+    font-size: 25px;
+    padding: 30px;
+    margin-top: 30px;
+}
+.by-btn {
+    font-size: 25px;
+    height: 60px;
+    width: 200px;
+    margin-top: 50px;
+    outline: none;
+    border-radius: 10px 10px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;}
+    .by-btn:hover {
+        background-color: #f16d7f;
+        transition-timing-function: ease;}
+    .by-btn:active {
+        position: relative;
+        top: 3px;
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);}
