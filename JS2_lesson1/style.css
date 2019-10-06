@@ -42,6 +42,12 @@ footer {
     font-size: 25px;
 }
 
+.total {
+    height: 100px;
+    padding: 50px;
+    font-size: 30px;
+}
+
 .cart-button {
     font-size: 25px;
     padding: 10px;

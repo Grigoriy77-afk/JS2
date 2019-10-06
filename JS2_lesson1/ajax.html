@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button>Render users</button>
+    <ul></ul>
+
+
+    <script>
+        const $list = document.querySelector(`ui`);
+        const $button = document.querySelector(`button`);
+
+                        //promise
+
+        function sendRequest (url) {
+            return new Promise((resolve, reject) => { //Создаем новый объект "promis" c помощью "new" и встроен. класса Promise
+                const xhr = new  XMLHttpRequest();            //встроенные функции, чтобы переводить promise из одного
+                xhr.open(`GET`, url);                         // состояния в другое (из pending => fulfiled || rejected)
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status !== 200) {
+                            reject();     //Если что-то пошло не так
+                        }
+                        const users = JSON.parse(xhr.responseText);
+
+                        resolve (users);  //Если всё верно
+                    }
+                };
+                xhr.send();
+            });
+        }
+
+        $button.addEventListener(`click`, () => {
+            sendRequest(`/users`).then(
+                (users) => {                    // onFulfilled
+                    users.forEach((user) => {
+                        const $li = document.createElement(`li`);
+                        $li.textContent = `${user.name}, (${user.age})`;
+
+                        $list.appendChild($li);
+                    });
+                },
+                () => {}  //onRejected
+            );
+        });
+
+
+                        //callback
+
+        function sendRequest (url, callback) {
+            const xhr = new  XMLHttpRequest();
+            xhr.open(`GET`, url);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    const users = JSON.parse(xhr.responseText);
+
+                    callback(users);
+                }
+            };
+            xhr.send();
+        }
+
+        $button.addEventListener(`click`, () => {
+            sendRequest(`/users`, (users) => {
+                users.forEach((user) => {
+                    const $li = document.createElement(`li`);
+                    $li.textContent = `${user.name}, (${user.age})`;
+
+                    $list.appendChild($li);
+                });
+            });
+
+        });
+
+
+
+
+
+        $button.addEventListener(`click`, () => {
+            const xhr = new  XMLHttpRequest();          //Создаем экземпляр класса XMLHttpRequest
+            xhr.open(`GET`, `/users`);                  //Конфигурируем запрос с помощью метода open, в адресной строке
+                                                        // прописываем наш сервер http://localhost:3000/users или вместо
+                                                        // URL /users указываем напрямую http://localhost:3000/users
+            xhr.onreadystatechange = function() {       //Событие смены состояния объекта запроса
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    const users = JSON.parse(xhr.responseText);   //Применяем метод pars для превращения в массив
+
+                    users.forEach((user) => {
+                        const $li = document.createElement(`li`);
+                        $li.textContent = `${user.name}, (${user.age})`;
+
+                        $list.appendChild($li);
+                    });
+                }
+            };
+            xhr.send();
+        });
+    </script>
+</body>
+</html>
