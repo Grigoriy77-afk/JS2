@@ -185,5 +185,40 @@ document.querySelector('[name="query"]').addEventListener('input', (event) => {
     document.querySelector('.catalog').innerHTML = items.render();
 });
 
+const app = new Vue({
+    el: `#root`,
+    data: {
+        items: [],
+        query: ``,
+        filteredItems: [],
+        cart: [],
+    },
+    methods: {
+        handleSearchClick() {
+            this.filteredItems = this.items.filter((item) => {
+                const regexp = new RegExp(this.query, 'i');
+
+                return regexp.test(item.title);
+            });
+        },
+        handleBuyClick(item) {
+            this.cart.push({...item, qty: 1});
+        },
+    },
+    mounted(){
+        fetch(`/goods`)
+            .then(response => response.json())
+            .then((goods) => {
+                this.items = goods;
+                this.filteredItems = goods;
+            })
+    },
+    computed: {
+        total() {
+            return this.items.reduce((acc, item) => acc + item.qty * item.price, 0);
+        }
+    }
+});
+
 
 

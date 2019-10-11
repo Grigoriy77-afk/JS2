@@ -13,8 +13,15 @@
                 <a href="catalog.html"><button class="catalog-button" type="button">Каталог</button></a>
             </header>
             <main>
-                <div class="cart"></div>
-                <div class="total"></div>
+                <div class="cart">
+                    <ul>
+                        <li v-for="item in cart">
+                            <h3>{{item.title}}</h3>
+                            <input class="qty" type="number" v-model="item.qty" />
+                        </li>
+                    </ul>
+                </div>
+                <div class="total">Общая стоимость товаров: {{total}} рублей</div>
 
             </main>
         </top>
@@ -23,8 +30,7 @@
         </footer>
     </wrapper>
 
-
-
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="script.js"></script>
 
 </body>
